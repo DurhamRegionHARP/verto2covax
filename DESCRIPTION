@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "lanejames35@gmail.com")
 Description: Convert the report downloaded from Verto into the required schema for upload into CoVaxON.
-License: use_mit_license()
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
