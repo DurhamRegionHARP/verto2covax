@@ -1,5 +1,6 @@
 #' Convert a single xlsx document
 #'
+#' importFrom dplyr %>%
 
 convertOne <- function(file) {
   # Covax required columns names
