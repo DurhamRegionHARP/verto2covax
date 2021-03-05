@@ -1,6 +1,5 @@
 #' Convert a single xlsx document
 #'
-#' importFrom dplyr %>%
 
 convertOne <- function(file) {
   futile.logger::flog.info("Processing file: %s", file)
@@ -87,6 +86,9 @@ convertOne <- function(file) {
       is.na(PersonMailingPostalCode),
       PersonMailingPostalCode,
       stringr::str_replace(PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])(\\d[a-zA-Z]\\d)', '\\1 \\2'),
+    ),
+    Vaccination_Event__c = getVaccinationEventId(
+      stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]
     )
   ) %>% dplyr::select(
     dplyr::all_of(covaxColumnNames)
