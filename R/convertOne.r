@@ -9,6 +9,8 @@
 #' @param file Character scalar. Names the path to Excel file to convert.
 #' @return Void
 #' @export
+#' @importFrom rlang .data
+#' @importFrom rlang :=
 
 convertOne <- function(file) {
   futile.logger::flog.info("Processing file: %s", file)
@@ -82,19 +84,19 @@ convertOne <- function(file) {
   # Apply the Covax schema
   cleanList <- xlList %>% dplyr::mutate(
     PersonHomePhone = dplyr::if_else(
-      is.na(PersonHomePhone),
-      PersonHomePhone,
-      stringr::str_replace(PersonHomePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
+      is.na(.data$PersonHomePhone),
+      .data$PersonHomePhone,
+      stringr::str_replace(.data$PersonHomePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
     ),
     PersonMobilePhone = dplyr::if_else(
-      is.na(PersonMobilePhone),
-      PersonMobilePhone,
-      stringr::str_replace(PersonMobilePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
+      is.na(.data$PersonMobilePhone),
+      .data$PersonMobilePhone,
+      stringr::str_replace(.data$PersonMobilePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
     ),
     PersonMailingPostalCode = dplyr::if_else(
-      is.na(PersonMailingPostalCode),
-      PersonMailingPostalCode,
-      stringr::str_replace(PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])(\\d[a-zA-Z]\\d)', '\\1 \\2'),
+      is.na(.data$PersonMailingPostalCode),
+      .data$PersonMailingPostalCode,
+      stringr::str_replace(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])(\\d[a-zA-Z]\\d)', '\\1 \\2'),
     ),
     Vaccination_Event__c = getVaccinationEventId(
       stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]

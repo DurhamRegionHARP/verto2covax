@@ -20,4 +20,7 @@ Imports:
     readxl,
     stringr,
     readr,
-    magrittr
+    magrittr,
+    purrr,
+    cellranger,
+    rlang
