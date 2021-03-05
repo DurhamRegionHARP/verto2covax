@@ -7,7 +7,7 @@
 convertOne(file)
 }
 \arguments{
-\item{file}{Character scalar. Names the path to Excel file to convert.}
+\item{file}{Character scalar. Names the path to an Excel file to convert.}
 }
 \value{
 Void

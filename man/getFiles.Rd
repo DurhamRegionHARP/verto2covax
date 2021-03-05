@@ -13,11 +13,11 @@ to search for .xlsx files. Defaults to the current working directory.}
 \value{
 A \code{list} containing file names. Otherwise, an
 error if the directory does not have read access, or does not
-contain any .xlsx files.
+contain any \code{.xlsx} files.
 }
 \description{
 \code{getFiles} looks for Excel files within a
-directory and returns a the file names as a list.
+directory and returns file names as a list.
 For this to work, Excel files must be saved with the
-.xlsx extension.
+\code{.xlsx} extension.
 }
