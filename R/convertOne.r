@@ -98,7 +98,8 @@ convertOne <- function(file) {
       .data$PersonMailingPostalCode,
       stringr::str_replace(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])(\\d[a-zA-Z]\\d)', '\\1 \\2'),
     ),
-    Vaccination_Event__c = getVaccinationEventId(
+    Vaccination_Event__c = paste0(
+      "VE-",
       stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]
     )
   ) %>% dplyr::select(
