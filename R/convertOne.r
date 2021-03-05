@@ -82,6 +82,11 @@ convertOne <- function(file) {
       is.na(PersonMobilePhone),
       PersonMobilePhone,
       stringr::str_replace(PersonMobilePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
+    ),
+    PersonMailingPostalCode = dplyr::if_else(
+      is.na(PersonMailingPostalCode),
+      PersonMailingPostalCode,
+      stringr::str_replace(PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])(\\d[a-zA-Z]\\d)', '\\1 \\2'),
     )
   ) %>% dplyr::select(
     dplyr::all_of(covaxColumnNames)
