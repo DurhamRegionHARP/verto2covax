@@ -3,6 +3,7 @@
 #' importFrom dplyr %>%
 
 convertOne <- function(file) {
+  futile.logger::flog.info("Processing file: %s", file)
   # Covax required columns names
   covaxColumnNames <- c(
     "LastName",
@@ -71,7 +72,7 @@ convertOne <- function(file) {
     }
   }
   # Apply the Covax schema
-  cleanList <- xlList %>% mutate(
+  cleanList <- xlList %>% dplyr::mutate(
     PersonHomePhone = dplyr::if_else(
       is.na(PersonHomePhone),
       PersonHomePhone,
@@ -107,4 +108,5 @@ convertOne <- function(file) {
     na = "",
     eol = "\r\n"
   )
+  futile.logger::flog.info("Created %s", output)
 }
