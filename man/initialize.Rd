@@ -2,10 +2,14 @@
 % Please edit documentation in R/initialize.r
 \name{initialize}
 \alias{initialize}
-\title{Set up the environment}
+\title{Turn on the log}
 \usage{
 initialize()
 }
+\value{
+Void
+}
 \description{
-Set up the environment
+\code{initialize} turns on logging for this package. This function
+is designed for internal use and should not be called externally.
 }

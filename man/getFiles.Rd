@@ -2,10 +2,22 @@
 % Please edit documentation in R/getFiles.r
 \name{getFiles}
 \alias{getFiles}
-\title{Get the files the user would like to convert}
+\title{List the files to convert}
 \usage{
 getFiles(excelDir = ".")
 }
+\arguments{
+\item{excelDir}{Character scalar. Names the directory used
+to search for .xlsx files. Defaults to the current working directory.}
+}
+\value{
+A \code{list} containing file names. Otherwise, an
+error if the directory does not have read access, or does not
+contain any .xlsx files.
+}
 \description{
-Get the files the user would like to convert
+\code{getFiles} looks for Excel files within a
+directory and returns a the file names as a list.
+For this to work, Excel files must be saved with the
+.xlsx extension.
 }

@@ -1,5 +1,15 @@
-#' Get the files the user would like to convert
+#' List the files to convert
 #'
+#' \code{getFiles} looks for Excel files within a
+#' directory and returns a the file names as a list.
+#' For this to work, Excel files must be saved with the
+#' .xlsx extension.
+#'
+#' @param excelDir Character scalar. Names the directory used
+#'   to search for .xlsx files. Defaults to the current working directory.
+#' @return A \code{list} containing file names. Otherwise, an
+#'   error if the directory does not have read access, or does not
+#'   contain any .xlsx files.
 
 getFiles <- function(excelDir = ".") {
   # Test the path

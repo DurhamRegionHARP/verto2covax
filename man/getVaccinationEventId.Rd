@@ -6,6 +6,18 @@
 \usage{
 getVaccinationEventId(VENumber)
 }
+\arguments{
+\item{VENumber}{Character scalar. Digit portion of the
+Vaccination Event Number used to look up the corresponding
+Vaccination Event object Id.}
+}
+\value{
+If the look up is successful, the Vaccination Event object
+Id as a character scalar. NA otherwise.
+}
 \description{
-Look up the Vaccination Event Id using the Vaccination Event number
+\code{getVaccinationEventId} looks for a Vaccination Event Object
+Id given a Vaccination Event Number. This look up is performed
+using the digit portion of the Vaccination Event Number without
+the "VE" prefix.
 }

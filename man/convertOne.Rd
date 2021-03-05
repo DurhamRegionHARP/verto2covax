@@ -2,10 +2,19 @@
 % Please edit documentation in R/convertOne.r
 \name{convertOne}
 \alias{convertOne}
-\title{Convert a single xlsx document}
+\title{Convert an Excel spreadsheet to match the CoVaxON schema}
 \usage{
 convertOne(file)
 }
+\arguments{
+\item{file}{Character scalar. Names the path to Excel file to convert.}
+}
+\value{
+Void
+}
 \description{
-Convert a single xlsx document
+\code{convertOne} reads an Excel file and converts the data
+to match the schema required for upload into CoVaxON. The
+converted file is saved as CSV and given the same name as
+the input Excel file.
 }

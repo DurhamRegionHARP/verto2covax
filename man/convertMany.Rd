@@ -2,12 +2,19 @@
 % Please edit documentation in R/convertMany.r
 \name{convertMany}
 \alias{convertMany}
-\title{Iterate over a list of files and convert each
-file to match the CoVax schema}
+\title{Convert a list of files to match the CoVax schema}
 \usage{
 convertMany(path)
 }
+\arguments{
+\item{path}{Character scalar. Names the directory containing
+the Excel files to convert.}
+}
+\value{
+Void
+}
 \description{
-Iterate over a list of files and convert each
-file to match the CoVax schema
+\code{convertMany} iterates over a list of files and calls
+\code{\link{convertOne}} on each file. See \link{getFiles} for
+information on how the file list is created.
 }
