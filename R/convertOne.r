@@ -6,7 +6,7 @@
 #' the input Excel file.
 #'
 #'
-#' @param file Character scalar. Names the path to Excel file to convert.
+#' @param file Character scalar. Names the path to an Excel file to convert.
 #' @return Void
 #' @export
 #' @importFrom rlang .data
