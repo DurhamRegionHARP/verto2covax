@@ -5,8 +5,8 @@
 #'
 #' @return Void
 
-initialize <- function() {
+initialize <- function(logFile) {
   # Initialize a log file when a path is provided
-  futile.logger::flog.appender(futile.logger::appender.tee("verto2covax.log"))
+  futile.logger::flog.appender(futile.logger::appender.tee(logFile))
   futile.logger::flog.info("Starting Verto2Covax as %s", Sys.getenv("USERNAME"))
 }

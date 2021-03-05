@@ -9,8 +9,8 @@
 #' @return Void
 #' @export
 
-convertMany <- function(path) {
-  initialize()
+convertMany <- function(path, logFile = ".") {
+  initialize(logFile)
   fileList <- getFiles(path)
   purrr::walk(fileList, function(xlFile) {
     convertOne(xlFile)
