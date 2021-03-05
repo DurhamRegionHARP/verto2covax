@@ -7,5 +7,5 @@
 convertOne(file)
 }
 \description{
-importFrom dplyr \%>\%
+Convert a single xlsx document
 }

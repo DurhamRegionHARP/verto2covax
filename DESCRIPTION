@@ -19,4 +19,5 @@ Imports:
     fs,
     readxl,
     stringr,
-    readr
+    readr,
+    magrittr
