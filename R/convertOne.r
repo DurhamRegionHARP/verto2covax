@@ -66,15 +66,25 @@ convertOne <- function(file) {
     "Status"
   )
   # Read the spreadsheet
-  xlList <- readxl::read_excel(
-    file,
-    sheet = 'Vaccine Report',
-    range = cellranger::cell_limits(c(2, 1), c(NA, 21)),
-    col_names = columnNames,
-    col_types = 'text',
-    na = NA_character_
-  )
-  # Create an empty data.frame using the CCM structure
+  xlList <- tryCatch({
+    readxl::read_excel(
+      file,
+      sheet = 'Vaccine Report',
+      range = cellranger::cell_limits(c(2, 1), c(NA, 21)),
+      col_names = columnNames,
+      col_types = 'text',
+      na = NA_character_
+    )
+  },
+  warning = function(warning) {
+    futile.logger::flog.warn(warning)
+    warning("There was a problem reading the excel file!\n Please see the log.", call. = FALSE)
+  },
+  error = function(err) {
+    futile.logger::flog.error(err)
+    stop("Process failed!\n Stopping execution.", call. = FALSE)
+  })
+  # Create an empty data.frame using the CoVaxON structure
   for (index in 1:length(covaxColumnNames)) {
     if (!(covaxColumnNames[index] %in% colnames(xlList))) {
       newColumn <- covaxColumnNames[index]
