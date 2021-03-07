@@ -11,10 +11,10 @@
 #'   error if the directory does not have read access, or does not
 #'   contain any \code{.xlsx} files.
 
-getFiles <- function(excelDir = ".") {
+getFiles <- function(excelDir = ".", regexp = NULL) {
   # Test the path
   xlFiles <- tryCatch({
-    fs::dir_ls(excelDir, glob = "*.xlsx")
+    fs::dir_ls(excelDir, regexp = regexp)
   },
   error = function(err) {
     futile.logger::flog.error(err)

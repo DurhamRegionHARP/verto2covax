@@ -9,9 +9,9 @@
 #' @return Void
 #' @export
 
-convertMany <- function(path, logFile = "verto2covax.log") {
+convertMany <- function(path, regexp, logFile = "verto2covax.log") {
   initialize(logFile)
-  fileList <- getFiles(path)
+  fileList <- getFiles(path, regexp)
   purrr::walk(fileList, function(xlFile) {
     convertOne(xlFile)
   })
