@@ -118,8 +118,8 @@ convertOne <- function(file) {
       stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]
     ),
     Email_Communication__c = dplyr::if_else(
-      is.na(PersonEmail),
-      Email_Communication__c,
+      is.na(.data$PersonEmail),
+      NA_character_,
       "TRUE"
     )
   ) %>% dplyr::select(
