@@ -40,7 +40,8 @@ convertOne <- function(file) {
     "PersonMailingCity",
     "PersonMailingState",
     "PersonMailingPostalCode",
-    "Vaccination_Event__c"
+    "Vaccination_Event__c",
+    "Organization__c"
   )
   columnNames <- c(
     "PatientID",
