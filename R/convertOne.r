@@ -116,6 +116,11 @@ convertOne <- function(file) {
     Vaccination_Event__c = paste0(
       "VE-",
       stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]
+    ),
+    Email_Communication__c = dplyr::if_else(
+      is.na(PersonEmail),
+      Email_Communication__c,
+      "TRUE"
     )
   ) %>% dplyr::select(
     dplyr::all_of(covaxColumnNames)
