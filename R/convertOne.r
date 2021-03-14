@@ -107,7 +107,9 @@ convertOne <- function(file) {
     PersonMailingPostalCode = dplyr::if_else(
       is.na(.data$PersonMailingPostalCode),
       .data$PersonMailingPostalCode,
-      stringr::str_replace(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])\\W?(\\d[a-zA-Z]\\d)', '\\1 \\2'),
+      stringr::str_to_upper(
+        stringr::str_replace(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])\\W?(\\d[a-zA-Z]\\d)', '\\1 \\2')
+      ),
     ),
     PersonMailingStreet = dplyr::if_else(
       is.na(.data$PersonMailingStreet),
