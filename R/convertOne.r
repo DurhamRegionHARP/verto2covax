@@ -61,17 +61,20 @@ convertOne <- function(file) {
     covaxColumnNames[22],
     covaxColumnNames[23],
     covaxColumnNames[24],
+    "PriorityArea",
     "TargetPopulation",
     "Reason",
     "VaccineDose",
-    "Status"
+    "VaccineType",
+    "Status",
+    "Site"
   )
   # Read the spreadsheet
   xlList <- tryCatch({
     readxl::read_excel(
       file,
       sheet = 'Vaccine Report',
-      range = cellranger::cell_limits(c(2, 1), c(NA, 21)),
+      range = cellranger::cell_limits(c(2, 1), c(NA, 24)),
       col_names = columnNames,
       col_types = 'text',
       na = NA_character_
@@ -116,10 +119,7 @@ convertOne <- function(file) {
       .data$PersonMailingStreet,
       stringr::str_replace_all(.data$PersonMailingStreet, ',', ''),
     ),
-    Vaccination_Event__c = paste0(
-      "VE-",
-      stringr::str_split(fs::path_ext_remove(fs::path_file(file)), "-", Inf, TRUE)[,3]
-    ),
+    Vaccination_Event__c = getVaccinationEvent(.data$Site),
     Email_Communication__c = dplyr::if_else(
       is.na(.data$PersonEmail),
       NA_character_,
@@ -151,4 +151,20 @@ convertOne <- function(file) {
     eol = "\r\n"
   )
   futile.logger::flog.info("Created %s", output)
+}
+
+# Helper function
+# Replace the name of the clinic with the CoVax Vaccination Event string
+getVaccinationEvent <- function(clinic) {
+  vaccinationEvent <- dplyr::case_when(
+    clinic == "Pickering Chestnut Hill Recreation Complex" ~ "VE-001710",
+    clinic == "Clarington Garnet B Rickard Recreation Complex" ~ "VE-001841",
+    clinic == "Ajax Audley Recreation Centre" ~ "VE-001835",
+    clinic == "Scugog Arena" ~ "VE-001843",
+    clinic == "Uxbridge Arena" ~ "VE-001842",
+    clinic == "Rick MacLeish Memorial Community Centre Arena" ~ "VE-001845",
+    clinic == "Whitby McKinney Centre" ~ "VE-001838",
+    TRUE ~ NA_character_
+  )
+  return(vaccinationEvent)
 }
