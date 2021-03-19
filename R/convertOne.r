@@ -119,6 +119,16 @@ convertOne <- function(file) {
       .data$PersonMailingStreet,
       stringr::str_replace_all(.data$PersonMailingStreet, ',', ''),
     ),
+    PersonMailingCity = dplyr::if_else(
+      is.na(.data$PersonMailingCity),
+      .data$PersonMailingCity,
+      stringr::str_replace_all(.data$PersonMailingCity, ',', ''),
+    ),
+    PersonMailingState = dplyr::if_else(
+      is.na(.data$PersonMailingState),
+      .data$PersonMailingState,
+      stringr::str_replace_all(.data$PersonMailingState, ',', ''),
+    ),
     Vaccination_Event__c = getVaccinationEvent(.data$Site),
     Email_Communication__c = dplyr::if_else(
       is.na(.data$PersonEmail),
