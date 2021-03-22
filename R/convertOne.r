@@ -108,11 +108,11 @@ convertOne <- function(file) {
       stringr::str_replace(.data$PersonMobilePhone, '(\\d\\d\\d)(\\d\\d\\d)(\\d\\d\\d\\d)', '\\1-\\2-\\3')
     ),
     PersonMailingPostalCode = dplyr::if_else(
-      is.na(.data$PersonMailingPostalCode),
-      .data$PersonMailingPostalCode,
+      stringr::str_detect(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])\\W?(\\d[a-zA-Z]\\d)'),
       stringr::str_to_upper(
         stringr::str_replace(.data$PersonMailingPostalCode, '([a-zA-Z]\\d[a-zA-Z])\\W?(\\d[a-zA-Z]\\d)', '\\1 \\2')
       ),
+      NA_character_
     ),
     PersonMailingStreet = dplyr::if_else(
       is.na(.data$PersonMailingStreet),
