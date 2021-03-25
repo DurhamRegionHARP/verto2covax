@@ -11,6 +11,7 @@
 #' @export
 #' @importFrom rlang .data
 #' @importFrom rlang :=
+utils::globalVariables("where")
 
 convertOne <- function(file) {
   futile.logger::flog.info("Processing file: %s", file)
@@ -154,8 +155,11 @@ convertOne <- function(file) {
     '.csv'
   )
   # Save the result
-  readr::write_csv(
-    cleanList,
+  # BUG: The Verto report may contain new line characters. These will cause
+  # CoVax to choke during Mass Dataload. This step removes them.
+  cleanList %>% dplyr::mutate(
+    dplyr::across(where(is.character), ~ stringr::str_replace_all(.x, '\n', ''))
+  ) %>% readr::write_csv(
     output,
     na = "",
     eol = "\r\n"
