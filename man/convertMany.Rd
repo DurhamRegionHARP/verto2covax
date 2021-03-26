@@ -4,7 +4,7 @@
 \alias{convertMany}
 \title{Convert a list of files to match the CoVax schema}
 \usage{
-convertMany(path)
+convertMany(path, regexp, logFile = "verto2covax.log")
 }
 \arguments{
 \item{path}{Character scalar. Names the directory containing

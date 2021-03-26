@@ -4,7 +4,7 @@
 \alias{getFiles}
 \title{List the files to convert}
 \usage{
-getFiles(excelDir = ".")
+getFiles(excelDir = ".", regexp = NULL)
 }
 \arguments{
 \item{excelDir}{Character scalar. Names the directory used

@@ -4,7 +4,7 @@
 \alias{initialize}
 \title{Turn on the log}
 \usage{
-initialize()
+initialize(logFile)
 }
 \value{
 Void
