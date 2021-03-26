@@ -1,16 +1,17 @@
-#' Convert an Excel spreadsheet to match the CoVaxON schema
+#' @title Convert an Excel spreadsheet to match the CoVaxON schema
 #'
-#' \code{convertOne} reads an Excel file and converts the data
-#' to match the schema required for upload into CoVaxON. The
-#' converted file is saved as CSV and given the same name as
-#' the input Excel file.
+#' @description \code{convertOne} reads an Excel file and converts the data
+#'   to match the schema required for upload into CoVaxON. The
+#'   converted file is saved as CSV and given the same name as
+#'   the input Excel file.
 #'
-#'
+#' @name convertOne
 #' @param file Character scalar. Names the path to an Excel file to convert.
 #' @return Void
 #' @export
 #' @importFrom rlang .data
 #' @importFrom rlang :=
+
 utils::globalVariables("where")
 
 convertOne <- function(file) {

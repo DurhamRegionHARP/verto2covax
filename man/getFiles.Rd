@@ -9,6 +9,9 @@ getFiles(excelDir = ".", regexp = NULL)
 \arguments{
 \item{excelDir}{Character scalar. Names the directory used
 to search for .xlsx files. Defaults to the current working directory.}
+
+\item{regexp}{Character scalar. Pattern \code{getFiles} should use
+to find files.}
 }
 \value{
 A \code{list} containing file names. Otherwise, an

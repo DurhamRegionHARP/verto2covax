@@ -7,6 +7,8 @@
 #'
 #' @param excelDir Character scalar. Names the directory used
 #'   to search for .xlsx files. Defaults to the current working directory.
+#' @param regexp Character scalar. Pattern \code{getFiles} should use
+#'   to find files.
 #' @return A \code{list} containing file names. Otherwise, an
 #'   error if the directory does not have read access, or does not
 #'   contain any \code{.xlsx} files.

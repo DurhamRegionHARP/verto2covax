@@ -6,6 +6,10 @@
 #'
 #' @param path Character scalar. Names the directory containing
 #'   the Excel files to convert.
+#' @param regexp Character scalar. Pattern \code{getFiles} should use
+#'   to find files within \code{path}.
+#' @param logFile Character scalar. Names the path \code{convertMany} should
+#'   write log information.
 #' @return Void
 #' @export
 

@@ -6,6 +6,9 @@
 \usage{
 initialize(logFile)
 }
+\arguments{
+\item{logFile}{Character scalar. Names the path used to write log information.}
+}
 \value{
 Void
 }

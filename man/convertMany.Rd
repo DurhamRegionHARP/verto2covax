@@ -9,6 +9,12 @@ convertMany(path, regexp, logFile = "verto2covax.log")
 \arguments{
 \item{path}{Character scalar. Names the directory containing
 the Excel files to convert.}
+
+\item{regexp}{Character scalar. Pattern \code{getFiles} should use
+to find files within \code{path}.}
+
+\item{logFile}{Character scalar. Names the path \code{convertMany} should
+write log information.}
 }
 \value{
 Void
