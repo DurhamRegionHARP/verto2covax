@@ -13,6 +13,7 @@
 #' @export
 
 tidyErrorFile <- function(file, outputFile) {
+  futile.logger::flog.info("Processing file: %s", file)
   # Bring in the data
   errorDF <- readr::read_csv(file, col_types = readr::cols(.default = readr::col_character()))
   # Filter out duplicate clients
@@ -38,5 +39,6 @@ tidyErrorFile <- function(file, outputFile) {
     na = "",
     eol = "\r\n"
   )
+  futile.logger::flog.info("Created %s", outputFile)
   return(invisible(file))
 }
