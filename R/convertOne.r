@@ -179,6 +179,10 @@ getVaccinationEvent <- function(clinic) {
     clinic == "Uxbridge Arena" ~ "VE-001842",
     clinic == "Cannington Rick MacLeish Memorial Community Centre Arena" ~ "VE-001845",
     clinic == "Whitby McKinney Centre" ~ "VE-001838",
+    clinic == "L1X – Pickering – Pineridge High School" ~ "VE-007370",
+    clinic == "L1Z – Ajax – St Teresa of Calcutta Catholic School" ~ "VE-007371",
+    clinic == "L1V – Pickering – Dunbarton High School" ~ "VE-007372",
+    clinic == "L1T – Ajax – McLean Community Centre" ~ "VE-007373",
     TRUE ~ NA_character_
   )
   return(vaccinationEvent)
