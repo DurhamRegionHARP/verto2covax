@@ -116,26 +116,23 @@ convertOne <- function(file) {
       ),
       NA_character_
     ),
-    PersonMailingStreet = dplyr::if_else(
-      is.na(.data$PersonMailingStreet),
-      .data$PersonMailingStreet,
-      stringr::str_replace_all(.data$PersonMailingStreet, ',', ''),
-    ),
-    PersonMailingCity = dplyr::if_else(
-      is.na(.data$PersonMailingCity),
-      .data$PersonMailingCity,
-      stringr::str_replace_all(.data$PersonMailingCity, ',', ''),
-    ),
-    PersonMailingState = dplyr::if_else(
-      is.na(.data$PersonMailingState),
-      .data$PersonMailingState,
-      stringr::str_replace_all(.data$PersonMailingState, ',', ''),
-    ),
     Vaccination_Event__c = getVaccinationEvent(.data$Site),
     Email_Communication__c = dplyr::if_else(
       is.na(.data$PersonEmail),
       NA_character_,
       "TRUE"
+    ),
+    PersonBirthdate = dplyr::if_else(
+      stringr::str_detect(.data$PersonBirthdate, '10[0-9][0-9]-[01][0-9]-[0123][0-9]'),
+      stringr::str_replace(.data$PersonBirthdate, '10([0-9][0-9]-[01][0-9]-[0123][0-9])', '19\\1'),
+      .data$PersonBirthdate,
+      NA_character_
+    ),
+    CCM_PatientId__c = dplyr::if_else(
+      nchar(.data$CCM_PatientId__c) == 10,
+      .data$CCM_PatientId__c,
+      NA_character_,
+      NA_character_
     )
   ) %>% dplyr::select(
     dplyr::all_of(covaxColumnNames)
@@ -159,7 +156,7 @@ convertOne <- function(file) {
   # BUG: The Verto report may contain unexpected characters. These will cause
   # CoVax to choke during Mass Dataload. This step removes them.
   cleanList %>% dplyr::mutate(
-    dplyr::across(where(is.character), ~ stringr::str_replace_all(.x, '["\n]', ''))
+    dplyr::across(where(is.character), ~ stringr::str_replace_all(.x, '[",\n]', ''))
   ) %>% readr::write_csv(
     output,
     na = "",
@@ -179,10 +176,10 @@ getVaccinationEvent <- function(clinic) {
     clinic == "Uxbridge Arena" ~ "VE-001842",
     clinic == "Cannington Rick MacLeish Memorial Community Centre Arena" ~ "VE-001845",
     clinic == "Whitby McKinney Centre" ~ "VE-001838",
-    clinic == "L1X – Pickering – Pineridge High School" ~ "VE-007370",
-    clinic == "L1Z – Ajax – St Teresa of Calcutta Catholic School" ~ "VE-007371",
-    clinic == "L1V – Pickering – Dunbarton High School" ~ "VE-007372",
-    clinic == "L1T – Ajax – McLean Community Centre" ~ "VE-007373",
+    clinic == "L1X \u2013 Pickering \u2013 Pineridge High School" ~ "VE-007370",
+    clinic == "L1Z \u2013 Ajax \u2013 St Teresa of Calcutta Catholic School" ~ "VE-007371",
+    clinic == "L1V \u2013 Pickering \u2013 Dunbarton High School" ~ "VE-007372",
+    clinic == "L1T \u2013 Ajax \u2013 McLean Community Centre" ~ "VE-007373",
     TRUE ~ NA_character_
   )
   return(vaccinationEvent)
