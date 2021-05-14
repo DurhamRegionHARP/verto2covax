@@ -1,6 +1,6 @@
 Package: verto2covax
 Title: Convert from Verto to CoVax
-Version: 1.0.0
+Version: 1.0.1
 Authors@R:
     person(given = "James",
            family = "Lane",
@@ -13,16 +13,16 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
-    futile.logger,
-    dplyr,
-    tibble,
-    fs,
-    readxl,
-    stringr,
-    readr,
-    magrittr,
-    purrr,
-    cellranger,
-    rlang,
-    tidyselect,
-    utils
+    futile.logger (>= 1.4.3),
+    dplyr (>= 1.0.6),
+    tibble (>= 3.1.1),
+    fs (>= 1.5.0),
+    readxl (>= 1.3.1),
+    stringr (>= 1.4.0),
+    readr (>= 1.4.0),
+    magrittr (>= 2.0.1),
+    purrr (>= 0.3.4),
+    cellranger (>= 1.1.0),
+    rlang (>= 0.4.11),
+    tidyselect (>= 1.1.1),
+    utils (>= 4.0.4)
