@@ -69,6 +69,8 @@ convertOne <- function(file) {
     "VaccineDose",
     "VaccineType",
     "Status",
+    "AppointmentDateBooked",
+    "AppointmentTimeBooked",
     "Site"
   )
   # Read the spreadsheet
@@ -76,7 +78,7 @@ convertOne <- function(file) {
     readxl::read_excel(
       file,
       sheet = 'Vaccine Report',
-      range = cellranger::cell_limits(c(2, 1), c(NA, 24)),
+      range = cellranger::cell_limits(c(2, 1), c(NA, 26)),
       col_names = columnNames,
       col_types = 'text',
       na = NA_character_
