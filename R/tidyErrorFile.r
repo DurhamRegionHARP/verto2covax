@@ -20,19 +20,7 @@ tidyErrorFile <- function(file, outputFile) {
   # Remove duplicated health card numbers
   # Set "Error" to NA where applicable
   tidyErrorDF <- errorDF %>%
-    dplyr::filter(.data$Error != "Duplicate Clients found.") %>%
-    dplyr::mutate(
-      CCM_PatientId__c = dplyr::if_else(
-        stringr::str_starts(.data$Error, "duplicate value found: CCM_PatientId__c duplicates value on record with id:"),
-        NA_character_,
-        .data$CCM_PatientId__c
-      ),
-      Error = dplyr::if_else(
-        stringr::str_starts(.data$Error, "duplicate value found: CCM_PatientId__c duplicates value on record with id:"),
-        NA_character_,
-        .data$Error
-      )
-    )
+    dplyr::filter(!stringr::str_starts(.data$Error, "duplicate value found: CCM_PatientId__c duplicates value on record with id:"))
   # Write the data to outputFile
   tidyErrorDF %>% readr::write_csv(
     outputFile,
